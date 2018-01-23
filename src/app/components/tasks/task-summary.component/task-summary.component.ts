@@ -4,14 +4,21 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'task-summary-component',
-  templateUrl: 'task-summary.component.html'
+  templateUrl: 'task-summary.component.html',
+  styleUrls: ['task-summary.component.scss']
 })
 export class TaskSummaryComponent {
   count$: Observable<number>;
   avgLength$: Observable<number>;
+  firstAlpha$: Observable<string>;
+  totalComplete$: Observable<number>;
+  totalNotStarted$: Observable<number>;
 
   constructor(taskService: TaskService) {
-    this.count$ = taskService.getCountObservable();
-    this.avgLength$ = taskService.getAvgLengthObservable();
+    this.count$ = taskService.count$;
+    this.avgLength$ = taskService.avgLength$;
+    this.firstAlpha$ = taskService.firstAlpha$;
+    this.totalComplete$ = taskService.totalComplete$;
+    this.totalNotStarted$ = taskService.totalNotStarted$;
   }
 }

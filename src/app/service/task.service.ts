@@ -1,50 +1,62 @@
 import { Injectable } from '@angular/core';
 import { Task, TaskStatus } from 'app/service/task.model';
 import { BehaviorSubject } from 'rxjs';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class TaskService {
   private allTasks = new Array<Task>();
   filter: TaskStatus = TaskStatus.all;
 
-  private tasks$ = new BehaviorSubject<Array<Task>>([]);
-  private count$ = new BehaviorSubject<number>(0);
-  private avgLength$ = new BehaviorSubject<number>(0);
+  public tasks$ = new BehaviorSubject<Array<Task>>([]);
+  public count$ = new BehaviorSubject<number>(0);
+  public avgLength$ = new BehaviorSubject<number>(0);
+  public firstAlpha$ = new BehaviorSubject<string>('');
+  public totalComplete$ = new BehaviorSubject<number>(0);
+  public totalNotStarted$ = new BehaviorSubject<number>(0);
 
   constructor() {
-    this.getTasksObservable().subscribe(
+    this.tasks$.subscribe((e: Array<Task>) => {
+      // Update count observable
+      this.count$.next(e.length);
 
-      function(this: TaskService, e: Array<Task>) {
-        // Update count observable
-        this.count$.next(e.length);
-        
+      var avgLength = 0;
+      var firstAlpha = '';
+      var totalComplete = 0;
+      var totalNotStarted = 0;
+
+      if (e.length > 0) {
         // Update the avgLength observable
-        var avgLength = 0;
-        if (e.length > 0) {
-          var total = 0;
-          for (let currentTask of e) {
-            total += currentTask.name.length;
+        var total = 0;
+        for (let currentTask of e) {
+          total += currentTask.name.length;
+          if (currentTask.checked) {
+            totalComplete += 1;
+          } else {
+            totalNotStarted += 1;
           }
-          avgLength = total / e.length;
         }
-        this.avgLength$.next(avgLength);
-      }.bind(this));
+        avgLength = total / e.length;
+        // Update firstAlpha observable
+        firstAlpha = e.sort((a, b) => {
+          if (a.name > b.name) {
+            return 1;
+          } else if (a.name < b.name) {
+            return -1;
+          } else {
+          return 0;
+          }
+        })[0].name;
+      }
+      this.avgLength$.next(avgLength);
+      this.firstAlpha$.next(firstAlpha);
+      this.totalComplete$.next(totalComplete);
+      this.totalNotStarted$.next(totalNotStarted);
+    });
   }
 
-  getTasksObservable(): Observable<Array<Task>> {
-    return this.tasks$.asObservable();
-  }
-
-  getCountObservable(): Observable<number> {
-    return this.count$.asObservable();
-  }
-
-  getAvgLengthObservable(): Observable<number> {
-    return this.avgLength$.asObservable();
-  }
-
-  addTask(task: Task) {
+  addTask(inputText: string) {
+    var task = new Task();
+    task.name = inputText;
     this.allTasks.push(task);
     this.fireObservable(this.filter);
   }
@@ -52,9 +64,9 @@ export class TaskService {
   updateTask(task: Task) {
     var index = this.allTasks.findIndex(t => t.name === task.name);
     if (index !== undefined) {
-       this.allTasks[index] = task;
-       // Update the filter
-       this.fireObservable(this.filter);
+      this.allTasks[index] = task;
+      // Update the filter
+      this.fireObservable(this.filter);
     }
   }
 
@@ -65,10 +77,14 @@ export class TaskService {
 
   private fireObservable(filter: TaskStatus) {
     if (filter === TaskStatus.completed) {
-      var checkedTasks: Array<Task> = this.allTasks.filter(t => t.checked === true);
+      var checkedTasks: Array<Task> = this.allTasks.filter(
+        t => t.checked === true
+      );
       this.tasks$.next(checkedTasks);
     } else if (filter === TaskStatus.notstarted) {
-      var uncheckedTasks: Array<Task> = this.allTasks.filter(t => t.checked === false);
+      var uncheckedTasks: Array<Task> = this.allTasks.filter(
+        t => t.checked === false
+      );
       this.tasks$.next(uncheckedTasks);
     } else {
       this.tasks$.next(this.allTasks);

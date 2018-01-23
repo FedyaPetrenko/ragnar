@@ -1,0 +1,22 @@
+@import "../../../sass/variables";
+
+.task {
+    display: flex;
+}
+
+.task-group {
+    padding: 10px;
+    border: solid;
+    border-color: $a-color-purple-n1;
+    margin: 5px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: $a-color-blue-n1;
+    text-align: center;
+    height: 22px;
+    margin-top: 5px;
+    margin-bottom: 1px;
+}

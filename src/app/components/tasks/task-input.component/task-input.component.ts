@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Task } from 'app/service/task.model';
 import { TaskService } from 'app/service/task.service';
 
 @Component({
   selector: 'task-input-component',
-  templateUrl: 'task-input.component.html'
+  templateUrl: 'task-input.component.html',
+  styleUrls: ['task-input.component.scss']
 })
 export class TaskInputComponent { 
   inputText: string = '';
@@ -14,9 +14,7 @@ export class TaskInputComponent {
 
   addTask() {
     if (this.inputText.length > 0) {
-      var task = new Task();
-      task.name = this.inputText;
-      this.taskService.addTask(task);
+      this.taskService.addTask(this.inputText);
       this.inputText = '';
     }
   }

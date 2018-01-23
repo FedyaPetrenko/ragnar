@@ -4,7 +4,8 @@ import { TaskService } from 'app/service/task.service';
 
 @Component({
   selector: 'task-detail-component',
-  templateUrl: 'task-detail.component.html'
+  templateUrl: 'task-detail.component.html',
+  styleUrls: ['task-detail.component.scss']
 })
 export class TaskDetailComponent { 
   constructor(private taskService: TaskService) {

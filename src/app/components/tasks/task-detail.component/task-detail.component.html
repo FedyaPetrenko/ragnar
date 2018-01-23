@@ -1,2 +1,1 @@
-<label>{{task.name}}</label>
-<input type='checkbox' [(ngModel)]='task.checked' (change)=update()/>
+<label class='detail-name marquee'>{{task.name}}<input class='detail-checkbox' type='checkbox' [(ngModel)]='task.checked' (change)=update()/></label>

@@ -5,12 +5,13 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'task-list-component',
-  templateUrl: 'task-list.component.html'
+  templateUrl: 'task-list.component.html',
+  styleUrls: ['task-list.component.scss']
 })
 export class TaskListComponent {
   tasks$: Observable<Task[]>;
   
   constructor(private taskService: TaskService) {
-    this.tasks$ = this.taskService.getTasksObservable();
+    this.tasks$ = this.taskService.tasks$;
   } 
 }
