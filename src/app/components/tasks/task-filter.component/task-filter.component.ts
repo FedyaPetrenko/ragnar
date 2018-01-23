@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TaskStatus } from 'app/service/task.model';
 import { TaskService } from 'app/service/task.service';
 
 @Component({
@@ -10,14 +11,14 @@ export class TaskFilterComponent {
   }
   
   filterShowAll() {
-    this.taskService.setFilter('');
+    this.taskService.setFilter(TaskStatus.all);
   }
 
   filterCompleted() {
-    this.taskService.setFilter('completed');
+    this.taskService.setFilter(TaskStatus.completed);
   }
 
   filterNotStarted() {
-    this.taskService.setFilter('notstarted');
+    this.taskService.setFilter(TaskStatus.notstarted);
   }
 }

@@ -5,11 +5,12 @@ import { TaskDetailComponent } from 'app/components/tasks/task-detail.component/
 import { TaskFilterComponent } from 'app/components/tasks/task-filter.component/task-filter.component';
 import { TaskInputComponent } from 'app/components/tasks/task-input.component/task-input.component';
 import { TaskListComponent } from 'app/components/tasks/task-list.component/task-list.component';
+import { TaskSummaryComponent } from 'app/components/tasks/task-summary.component/task-summary.component';
 import { TasksComponent } from 'app/components/tasks/tasks.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule],
-  exports: [TasksComponent, TaskInputComponent, TaskListComponent, TaskDetailComponent, TaskFilterComponent],
-  declarations: [TasksComponent, TaskInputComponent, TaskListComponent, TaskDetailComponent, TaskFilterComponent],
+  exports: [TasksComponent, TaskInputComponent, TaskListComponent, TaskDetailComponent, TaskFilterComponent, TaskSummaryComponent],
+  declarations: [TasksComponent, TaskInputComponent, TaskListComponent, TaskDetailComponent, TaskFilterComponent, TaskSummaryComponent],
 })
 export class TaskModule {}
