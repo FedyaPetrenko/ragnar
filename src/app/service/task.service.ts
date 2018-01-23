@@ -58,7 +58,7 @@ export class TaskService {
     var task = new Task();
     task.name = inputText;
     this.allTasks.push(task);
-    this.fireObservable(this.filter);
+    this.fireObservable();
   }
 
   updateTask(task: Task) {
@@ -66,22 +66,22 @@ export class TaskService {
     if (index !== undefined) {
       this.allTasks[index] = task;
       // Update the filter
-      this.fireObservable(this.filter);
+      this.fireObservable();
     }
   }
 
   setFilter(filterText: TaskStatus) {
     this.filter = filterText;
-    this.fireObservable(this.filter);
+    this.fireObservable();
   }
 
-  private fireObservable(filter: TaskStatus) {
-    if (filter === TaskStatus.completed) {
+  private fireObservable() {
+    if (this.filter === TaskStatus.completed) {
       var checkedTasks: Array<Task> = this.allTasks.filter(
         t => t.checked === true
       );
       this.tasks$.next(checkedTasks);
-    } else if (filter === TaskStatus.notstarted) {
+    } else if (this.filter === TaskStatus.notstarted) {
       var uncheckedTasks: Array<Task> = this.allTasks.filter(
         t => t.checked === false
       );

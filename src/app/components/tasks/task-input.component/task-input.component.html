@@ -1,4 +1,4 @@
 <div class='task-input'>
-  <input [(ngModel)]="inputText"/>
+  <input [(ngModel)]="inputText" (keyup.enter)="addTask()"/>
   <button (click)="addTask()">Add</button>
 </div>
