@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { TaskStatus } from 'app/models/task-status.enum';
 import { TaskSummaryDetails } from 'app/models/task-summary-details.model';
-import { Task, TaskStatus } from 'app/models/task.model';
+import { Task } from 'app/models/task.model';
 import { Store } from 'app/store/store';
 
 @Injectable()

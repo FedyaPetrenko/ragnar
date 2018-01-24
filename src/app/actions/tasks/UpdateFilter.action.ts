@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IDataAction } from 'app/actions/IDataAction';
-import { TaskStatus } from 'app/models/task.model';
+import { TaskStatus } from 'app/models/task-status.enum';
 import { TasksService } from 'app/service/tasks.service';
 import { Store } from 'app/store/store';
 
