@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Task } from 'app/service/task.model';
+import { Task } from 'app/models/task.model';
 import { Store } from 'app/store/store';
 import { Observable } from 'rxjs/Observable';
 

@@ -1,14 +1,24 @@
 import { Injectable } from '@angular/core';
-import { IDataAction } from 'app/actions/IDataAction';
-import { Task } from 'app/service/task.model';
+import { Task, TaskStatus } from 'app/models/task.model';
 import { Store } from 'app/store/store';
 
 @Injectable()
-export class CalculateSummaryFieldsAction implements IDataAction<Task[]> {
-  constructor(private store: Store) {
+export class TasksService {
+  constructor(private store: Store) {    
   }
-    
-  execute(payload: Task[]) {
+
+  public UpdateTaskStoreValues() {
+    this.ApplyTaskFilter();
+    this.UpdateTaskSummaryFields();
+  }
+
+  private ApplyTaskFilter() {
+    this.store.taskStore.tasks$.next(this.GetFilteredArray());
+  }
+
+  private UpdateTaskSummaryFields() {
+    var payload = this.GetFilteredArray();
+
     // Update total count;  
     this.store.taskStore.count$.next(payload.length);
 
@@ -45,5 +55,21 @@ export class CalculateSummaryFieldsAction implements IDataAction<Task[]> {
     this.store.taskStore.firstAlpha$.next(firstAlpha);
     this.store.taskStore.totalComplete$.next(totalComplete);
     this.store.taskStore.totalNotStarted$.next(totalNotStarted);
+  }
+
+  private GetFilteredArray(): Array<Task> {
+    if (this.store.taskStore.filter === TaskStatus.completed) {
+      var checkedTasks: Array<Task> = this.store.taskStore.allTasks.filter(
+        t => t.checked === true
+      );
+      return checkedTasks;
+    } else if (this.store.taskStore.filter === TaskStatus.notstarted) {
+      var uncheckedTasks: Array<Task> = this.store.taskStore.allTasks.filter(
+        t => t.checked === false
+      );
+      return uncheckedTasks;
+    } else {
+      return this.store.taskStore.allTasks;
+    }
   }
 }

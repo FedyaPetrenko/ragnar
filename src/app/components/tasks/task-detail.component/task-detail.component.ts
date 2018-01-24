@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ApplyTaskFilterAction } from 'app/actions/tasks/ApplyTaskFilter.action';
 import { UpdateTaskAction } from 'app/actions/tasks/UpdateTask.action';
-import { Task } from 'app/service/task.model';
+import { Task } from 'app/models/task.model';
 
 @Component({
   selector: 'task-detail-component',
@@ -9,7 +8,7 @@ import { Task } from 'app/service/task.model';
   styleUrls: ['task-detail.component.scss']
 })
 export class TaskDetailComponent { 
-  constructor(private updateTask: UpdateTaskAction, private applyTaskFilterAction: ApplyTaskFilterAction) {
+  constructor(private updateTask: UpdateTaskAction) {
   }
 
   @Input()
@@ -17,6 +16,5 @@ export class TaskDetailComponent {
 
   update() {
     this.updateTask.execute(this.task);
-    this.applyTaskFilterAction.execute();
   }
 }
