@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Task } from 'app/service/task.model';
-import { TaskService } from 'app/service/task.service';
+import { Store } from 'app/store/store';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 export class TaskListComponent {
   tasks$: Observable<Task[]>;
   
-  constructor(private taskService: TaskService) {
-    this.tasks$ = this.taskService.tasks$;
+  constructor(private store: Store) {
+    this.tasks$ = this.store.taskStore.tasks$;
   } 
 }

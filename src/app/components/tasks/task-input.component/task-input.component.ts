@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { TaskService } from 'app/service/task.service';
+import { AddTaskAction } from 'app/actions/tasks/AddTask.action';
+import { ApplyTaskFilterAction } from 'app/actions/tasks/ApplyTaskFilter.action';
 
 @Component({
   selector: 'task-input-component',
@@ -9,12 +10,13 @@ import { TaskService } from 'app/service/task.service';
 export class TaskInputComponent { 
   inputText: string = '';
 
-  constructor(private taskService: TaskService) {
+  constructor(private addTaskAction: AddTaskAction, private applyTaskFilterAction: ApplyTaskFilterAction) {
   }
 
   addTask() {
     if (this.inputText.length > 0) {
-      this.taskService.addTask(this.inputText);
+      this.addTaskAction.execute(this.inputText);
+      this.applyTaskFilterAction.execute();
       this.inputText = '';
     }
   }

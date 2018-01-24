@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { TaskService } from 'app/service/task.service';
+import { CalculateSummaryFieldsAction } from 'app/actions/tasks/CalculateSummaryFields.action';
+import { Task } from 'app/service/task.model';
+import { Store } from 'app/store/store';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -14,11 +16,16 @@ export class TaskSummaryComponent {
   totalComplete$: Observable<number>;
   totalNotStarted$: Observable<number>;
 
-  constructor(taskService: TaskService) {
-    this.count$ = taskService.count$;
-    this.avgLength$ = taskService.avgLength$;
-    this.firstAlpha$ = taskService.firstAlpha$;
-    this.totalComplete$ = taskService.totalComplete$;
-    this.totalNotStarted$ = taskService.totalNotStarted$;
+  constructor(public store: Store, private calculateSummaryFieldsAction: CalculateSummaryFieldsAction) {
+    this.count$ = this.store.taskStore.count$;
+    this.avgLength$ = this.store.taskStore.avgLength$;
+    this.firstAlpha$ = this.store.taskStore.firstAlpha$;
+    this.totalComplete$ = this.store.taskStore.totalComplete$;
+    this.totalNotStarted$ = this.store.taskStore.totalNotStarted$;
+
+    // Setup the observable to calculate the summary
+    this.store.taskStore.tasks$.subscribe((e: Array<Task>) => {
+      this.calculateSummaryFieldsAction.execute(e);
+    });
   }
 }

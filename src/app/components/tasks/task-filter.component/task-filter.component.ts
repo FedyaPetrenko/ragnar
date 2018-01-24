@@ -1,24 +1,28 @@
 import { Component } from '@angular/core';
+import { ApplyTaskFilterAction } from 'app/actions/tasks/ApplyTaskFilter.action';
+import { UpdateFilterAction } from 'app/actions/tasks/UpdateFilter.action';
 import { TaskStatus } from 'app/service/task.model';
-import { TaskService } from 'app/service/task.service';
 
 @Component({
   selector: 'task-filter-component',
   templateUrl: 'task-filter.component.html'
 })
 export class TaskFilterComponent {
-  constructor(private taskService: TaskService) {
+  constructor(private applyTaskFilterAction: ApplyTaskFilterAction, private updateFilterAction: UpdateFilterAction) {
   }
   
   filterShowAll() {
-    this.taskService.setFilter(TaskStatus.all);
+    this.updateFilterAction.execute(TaskStatus.all);
+    this.applyTaskFilterAction.execute();
   }
 
   filterCompleted() {
-    this.taskService.setFilter(TaskStatus.completed);
+    this.updateFilterAction.execute(TaskStatus.completed);
+    this.applyTaskFilterAction.execute();
   }
 
   filterNotStarted() {
-    this.taskService.setFilter(TaskStatus.notstarted);
+    this.updateFilterAction.execute(TaskStatus.notstarted);
+    this.applyTaskFilterAction.execute();
   }
 }
