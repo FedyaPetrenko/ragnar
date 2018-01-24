@@ -3,9 +3,3 @@ export class Task {
   checked: boolean = false;
   id: number;
 }
-
-export enum TaskStatus {
-  'all',
-  'completed',
-  'notstarted'
-}
