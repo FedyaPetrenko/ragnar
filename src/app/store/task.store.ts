@@ -7,7 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 export class TaskStore {
   allTasks = new Array<Task>();
   filter: TaskStatus = TaskStatus.all;
-  
+  allChecked: boolean = false;
+
   tasks$ = new BehaviorSubject<Array<Task>>([]);
   count$ = new BehaviorSubject<number>(0);
   avgLength$ = new BehaviorSubject<number>(0);

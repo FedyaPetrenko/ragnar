@@ -1,5 +1,7 @@
 <div class='task-filter'>
-  <button (click)="filterShowAll()">Show All</button>
+  <label>{{tasksLeft$ | async}} tasks left</label>
+  <button (click)="filterShowAll()">All</button>
+  <button (click)="filterNotStarted()">Active</button>
   <button (click)="filterCompleted()">Completed</button>
-  <button (click)="filterNotStarted()">Not Started</button>
+  <button (click)="clearCompletedTasks()">Clear Completed Tasks</button>
 </div>

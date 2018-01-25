@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AddTaskAction } from 'app/actions/tasks/AddTask.action';
+import { CompleteAllTasksAction } from 'app/actions/tasks/CompleteAllTasks.action';
 
 @Component({
   selector: 'task-input-component',
@@ -9,7 +10,7 @@ import { AddTaskAction } from 'app/actions/tasks/AddTask.action';
 export class TaskInputComponent { 
   inputText: string = '';
 
-  constructor(private addTaskAction: AddTaskAction) {
+  constructor(private addTaskAction: AddTaskAction, private completeAllTasksAction: CompleteAllTasksAction) {
   }
 
   addTask() {
@@ -17,5 +18,9 @@ export class TaskInputComponent {
       this.addTaskAction.execute(this.inputText);
       this.inputText = '';
     }
+  }
+
+  completeAllTasks() {
+    this.completeAllTasksAction.execute();
   }
 }

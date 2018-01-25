@@ -1,4 +1,5 @@
 <div class='task-input'>
-  <input [(ngModel)]="inputText" (keyup.enter)="addTask()"/>
-  <button (click)="addTask()">Add</button>
+  <button class='toggle-all' (click)="completeAllTasks()">Complete All</button>
+  <input [(ngModel)]="inputText" (keyup.enter)="addTask()" placeholder="What needs to be done?"/>
+  <!-- <button (click)="addTask()">Add</button> -->
 </div>

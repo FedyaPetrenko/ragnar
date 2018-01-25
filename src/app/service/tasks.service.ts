@@ -22,10 +22,11 @@ export class TasksService {
     var payload = this.GetFilteredArray();
   
     // Get Summary Details
-    var details = this.GetSummaryDetails(payload);
+    var details = this.GetSummaryDetails(this.store.taskStore.allTasks);
     this.store.taskStore.avgLength$.next(details.avgLength);
     this.store.taskStore.totalComplete$.next(details.totalComplete);
     this.store.taskStore.totalNotStarted$.next(details.totalNotStarted);
+    this.store.taskStore.allChecked = details.allChecked;
     
     // Get First alpha
     this.store.taskStore.firstAlpha$.next(this.GetFirstAlpha(payload));
@@ -85,8 +86,11 @@ export class TasksService {
         }
       }
       details.avgLength = total / tasks.length;
+      // Set all checked value
+      if (details.totalComplete === tasks.length) {
+        details.allChecked = true;
+      }
     }
-
     return details;
   }
 }

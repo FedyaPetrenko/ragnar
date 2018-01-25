@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { DeleteTaskAction } from 'app/actions/tasks/DeleteTask.action';
 import { UpdateTaskAction } from 'app/actions/tasks/UpdateTask.action';
 import { Task } from 'app/models/task.model';
 
@@ -8,7 +9,7 @@ import { Task } from 'app/models/task.model';
   styleUrls: ['task-detail.component.scss']
 })
 export class TaskDetailComponent { 
-  constructor(private updateTask: UpdateTaskAction) {
+  constructor(private updateTask: UpdateTaskAction, private deleteTask: DeleteTaskAction) {
   }
 
   @Input()
@@ -16,5 +17,9 @@ export class TaskDetailComponent {
 
   update() {
     this.updateTask.execute(this.task);
+  }
+
+  delete() {
+    this.deleteTask.execute(this.task);
   }
 }
