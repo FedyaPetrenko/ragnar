@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { DeleteTaskAction } from 'app/actions/tasks/DeleteTask.action';
-import { UpdateTaskAction } from 'app/actions/tasks/UpdateTask.action';
+import { DeleteTaskAction } from 'app/actions/tasks/delete-task.action';
+import { UpdateTaskAction } from 'app/actions/tasks/update-task.action';
 import { Task } from 'app/models/task.model';
 
 @Component({

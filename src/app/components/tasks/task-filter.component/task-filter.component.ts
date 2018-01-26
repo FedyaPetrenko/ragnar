@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ClearCompletedTasksAction } from 'app/actions/tasks/ClearCompletedTasks.action';
-import { UpdateFilterAction } from 'app/actions/tasks/UpdateFilter.action';
+import { ClearCompletedTasksAction } from 'app/actions/tasks/clear-completed-tasks.action';
+import { UpdateFilterAction } from 'app/actions/tasks/update-filter.action';
 import { TaskStatus } from 'app/models/task-status.enum';
 import { Store } from 'app/store/store';
 import { Observable } from 'rxjs/Observable';

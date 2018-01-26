@@ -27,16 +27,9 @@
   "compileOnSave": false,
   "buildOnSave": false,
   "include": ["../src/**/*.spec.ts", "../**/*.d.ts"],
-  "exclude": [
-    "node_modules",
-    "build/dist/*",
-    "dist-serve/*",
-    "node/*"
-  ],
+  "exclude": ["node_modules", "build/dist/*", "dist-serve/*", "node/*"],
   "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true,
-    "useCache": true
+    "forkChecker": true
   },
   "angularCompilerOptions": {
     "genDir": ".",

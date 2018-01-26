@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AddTaskAction } from 'app/actions/tasks/AddTask.action';
-import { CompleteAllTasksAction } from 'app/actions/tasks/CompleteAllTasks.action';
+import { AddTaskAction } from 'app/actions/tasks/add-task.action';
+import { CompleteAllTasksAction } from 'app/actions/tasks/complete-all-tasks.action';
 
 @Component({
   selector: 'task-input-component',

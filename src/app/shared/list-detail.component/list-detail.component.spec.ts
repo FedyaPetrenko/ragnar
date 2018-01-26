@@ -1,15 +1,18 @@
 import { TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TaskSummaryComponent } from 'app/components/tasks/task-summary.component/task-summary.component';
-describe('TaskSummaryComponent', () => {
+import { ListDetailComponent } from 'app/shared/list-detail.component/list-detail.component';
+
+describe('ListDetailComponent', () => {
   beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [RouterTestingModule],
-        declarations: [TaskSummaryComponent]
+        imports: [RouterTestingModule, FormsModule],
+        declarations: [ListDetailComponent]
       }).compileComponents();
   });
-  it('should create the app', () => {
-      //const fixture = TestBed.createComponent(TaskSummaryComponent);
+  it(
+    'should create the app', () => {
+      //const fixture = TestBed.createComponent(TaskDetailComponent);
       //const app = fixture.debugElement.componentInstance;
       expect(true).toBe(true);
       //expect(app).toBeTruthy();

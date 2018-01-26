@@ -1,0 +1,5 @@
+<div>
+  <ul class='list' *ngFor="let task of tasks$ | async">
+    <li><list-detail-component [task]=task></list-detail-component></li>
+  </ul>
+</div>

@@ -23,7 +23,7 @@ module.exports = {
     '!**/*.d.ts',
   ],
   coverageDirectory: './test/coverage',
-  coverageReporters: ['cobertura'],
+  coverageReporters: ['cobertura', 'text'],
   mapCoverage: true,
   testResultsProcessor: './test/jest-trx-processor'
 };

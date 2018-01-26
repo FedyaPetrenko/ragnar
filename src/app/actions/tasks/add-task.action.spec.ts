@@ -1,4 +1,4 @@
-import { AddTaskAction } from 'app/actions/tasks/AddTask.action';
+import { AddTaskAction } from 'app/actions/tasks/add-task.action';
 import { TasksService } from 'app/service/tasks.service';
 import { Store } from 'app/store/store';
 import { TaskStore } from 'app/store/task.store';
